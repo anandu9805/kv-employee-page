@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="style.css" />
+    <title>Employee</title>
+  </head>
+  <body>
+    <div>
+      <div>
+        <img
+          src="assets/kv logo.png"
+          alt="keyvalue"
+          width="220"
+          height="50"
+          style="margin-top: -20px"
+        />
+      </div>
+    </div>
+    <div class="sidenav2">
+      <div
+        style="
+          margin-top: 0px;
+          margin-right: -20px;
+          border-radius: 30px 0px 0px 30px;
+          background-color: rgb(63, 174, 248);
+        "
+      >
+        <img src="assets/List.png" alt="keyvalue" class="avatar" />
+        <p style="display: inline; color: white">Employee List</p>
+      </div>
+    </div>
+    <main>
+      <div class="card1">
+        <h1
+          style="
+            font-family: system-ui, -apple-system, BlinkMacSystemFont,
+              'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans',
+              'Helvetica Neue', sans-serif;
+          "
+        >
+          Create Employee
+        </h1>
+      </div>
+      <div class="card2">
+        <form name="Employeeform">
+            <!-- onsubmit="validateForm();makeobject();"> -->
+          <div id="formsession">
+            <div>
+              <div>
+                <label for="ename" id="enlabel">Employee Name</label>
+                <input
+                  type="text"
+                  id="en"
+                  name="ename"
+                  placeholder="Employee name"
+                />
+              </div>
+              <div>
+                <label for="Rname" id="Ridlabel">Role</label>
+                <!-- <input type="text" id="Rid" name="Rname" placeholder="Role" /> -->
+                <select name="Rname" id="Rid">
+                  <option value="Trainee">Trainee</option>
+                  <option value="Developer">Developer</option>
+                </select>
+              </div>
+              <div>
+                <label for="Add" id="addidlabel">Addresss</label>
+                <input
+                  type="text"
+                  id="addid"
+                  name="Add"
+                  placeholder="Addresss"
+                />
+              </div>
+            </div>
+
+            <div>
+              <div>
+                <label for="emid" id="eidlabel">Employee ID</label>
+                <input
+                  type="text"
+                  id="eid"
+                  name="emid"
+                  placeholder="Employee ID"
+                />
+              </div>
+
+              <div>
+                <label for="Sname" id="Sidlabel">Status</label>
+                <!-- <input type="text" id="Sid" name="Sname" placeholder="Status" /> -->
+                <select name="Sname" id="Sid">
+                  <option value="Single">Single</option>
+                  <option value="Married">Married</option>
+                </select>
+              </div>
+
+              <div>
+                <label for="pname" id="pidlabel">Upload ID Proof</label>
+                <input
+                  type="file"
+                  id="pid"
+                  name="pname"
+                  placeholder="Choose file "
+                  style=" margin-top: 10px;
+                  border-radius:4px;
+                  font-family: system-ui, -apple-system, BlinkMacSystemFont,
+                    'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans',
+                    'Helvetica Neue', sans-serif;
+                    background-color:rgba(190, 190, 190, 0.664);
+                
+                  display: block;
+                  padding: 7px;
+                  width: 300px;
+                  "
+                  
+                />
+              </div>
+            </div>
+            <div>
+              <div>
+                <label for="Jdate" id="jdlabel">Joining Date</label>
+                <input
+                  type="text"
+                  id="jd"
+                  name="Jdate"
+                  placeholder="Joining Date"
+                />
+              </div>
+              <div>
+                <label for="Exp" id="Eidlabel">Experience</label>
+                <input
+                  type="text"
+                  id="Eid"
+                  name="Exp"
+                  placeholder="Experience"
+                />
+              </div>
+
+              <div>
+                <label for="ename" id="emailidlabel">Email</label>
+                <input
+                  type="text"
+                  id="emailid"
+                  name="ename"
+                  placeholder="Enter email"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div id="buttonsession">
+            <button
+              type="button"
+              id="create"
+              style="background-color: rgb(63, 174, 248)"
+              onclick="trigger()"
+            >
+              Create
+            </button>
+            <button type="button" id="cancel" style="color: rgb(78, 75, 75)" >
+              Cancel
+            </button>
+          </div>
+        </form>
+      </div>
+    </main>
+  </body>
+  <script>
+    const thingstodoaftersubmit=()=>{
+        console.log("fetching........");
+        validateForm();
+        makeobject();
+        location.reload();
+    }
+    const debounce = function (func, delay){
+    let debounceTimer
+    return function() {
+        let context = this;
+        const args = arguments;
+            clearTimeout(debounceTimer)
+                debounceTimer = setTimeout(() => func.apply(context, args), delay);
+    }
+} 
+const trigger=debounce(thingstodoaftersubmit,5000);
+    /* const element = document.getElementById("create");
+    element.addEventListener("click", myFunction);
+
+    function myFunction() {
+      document.getElementById("demo").innerHTML = "Bye world";
+        let x = document.forms["Employeeform"]["ename"].value;
+      
+    }*/
+    const btn = document.getElementById("create");
+
+    btn.addEventListener("click", function onClick() {
+      btn.style.backgroundColor = "grey";
+      btn.style.color = "black";
+    });
+
+    function validateForm() {
+      let x = document.getElementById("emailid").value;
+
+      if (
+        /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(
+          document.getElementById("emailid").value
+        )
+      ) {
+        return true;
+      }
+      alert("You have entered an invalid email address!");
+      return false;
+    }
+    function makeobject() {
+      
+      let d1 = document.getElementById("en").value;
+      let d2 = document.getElementById("eid").value;
+      let d3 = document.getElementById("jd").value;
+      let d4 = document.getElementById("Rid").value;
+      let d5 = document.getElementById("Sid").value;
+      let d6 = document.getElementById("Eid").value;
+      let d7 = document.getElementById("addid").value;
+      let d8 = document.getElementById("pid").value;
+      let d9 = document.getElementById("emailid").value;
+
+      var obj = {
+        [document.getElementById("enlabel").innerHTML]:d1,
+        [document.getElementById("eidlabel").innerHTML]:d2,
+        [document.getElementById("jdlabel").innerHTML]:d3,
+        [document.getElementById("Ridlabel").innerHTML]:d4,
+        [document.getElementById("Sidlabel").innerHTML]:d5,
+        [document.getElementById("Eidlabel").innerHTML]:d6,
+        [document.getElementById("addidlabel").innerHTML]:d7,
+        [document.getElementById("pidlabel").innerHTML]:d8,
+        [document.getElementById("emailidlabel").innerHTML]:d9,
+      };
+
+      console.log(obj);
+    }
+  </script>
+</html>
